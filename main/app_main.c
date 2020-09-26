@@ -25,7 +25,7 @@
 #include "esp_sleep.h"
 #include "driver/gpio.h"
 
-#define DEFAULT_SCAN_LIST_SIZE                      CONFIG_EXAMPLE_SCAN_LIST_SIZE
+#define DEFAULT_SCAN_LIST_SIZE                      CONFIG_SCAN_LIST_SIZE
 
 #define LCD_HOST                                    SPI2_HOST
 #define DMA_CHAN                                    LCD_HOST
@@ -46,7 +46,7 @@
 // IO14 is connected to the SD card of the board, the power control of the LED is IO pin
 #define POWER_PIN       14
 
-// #define HAS_SDCARD       //If you have an SD card, please open this definition
+#define HAS_SDCARD       //If you have an SD card, please open this definition
 
 
 static RTC_DATA_ATTR struct timeval sleep_enter_time;
@@ -283,7 +283,7 @@ void app_main(void)
     sdcard_init();
 #endif
 
-    const int wakeup_time_sec = 60;
+    const int wakeup_time_sec = 10;
     ESP_LOGI(TAG, "Enabling timer wakeup, %ds", wakeup_time_sec);
     esp_sleep_enable_timer_wakeup(wakeup_time_sec * 1000000);
 
